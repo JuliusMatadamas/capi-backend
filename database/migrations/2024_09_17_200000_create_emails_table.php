@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('contact_id');
+            $table->string('email');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('contact_id')->references('id')->on('contacts');
         });
     }
 

@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname', 45)->nullable(false);
+            $table->string('lastname', 45)->nullable(false);
+            $table->date('birthdate')->nullable(false);
+            $table->enum('genre', ['f', 'm'])->default('f')->nullable(false);
+            $table->text('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique(['firstname', 'lastname', 'birthdate', 'genre']);
         });
     }
 

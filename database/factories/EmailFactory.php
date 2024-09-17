@@ -2,13 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Email;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Email>
- */
 class EmailFactory extends Factory
 {
+    protected $model = Email::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +18,10 @@ class EmailFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'contact_id' => null,
+            'email' => $this->faker->email(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
     }
 }
